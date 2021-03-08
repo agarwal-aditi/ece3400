@@ -19,7 +19,7 @@ After understanding how to program the Arduino, we got started on the first part
 
  Since it reads a value upto 1023, it was important to first calibrate the photoresistor to the regular lighting surroundings so that it will be able to detect a flashlight approximiatley 30 cm away. To do this, I first created a simple circuit with just one photosensor connected. 
  
-![one photosensor circuit](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/single_photoresistor_circuit.png)
+![one photosensor circuit](single_photoresistor_circuit.png)
 
 <p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/single_photoresistor_circuit.png" height="300" width="500"></p>
 
