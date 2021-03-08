@@ -25,14 +25,12 @@ After understanding how to program the Arduino, we got started on the first part
 
 After creating this circuit, I used the `CdS_ReadA0.ino` code to read the value to the Serial Monitor. In the code, first in set up I set the baud rate to 9600 and then match that on the serial monitor so that I can read the outputs. Then in the loop, I read the pinvalue using an `analogRead` to pin A0, which is which pin the photoresistor output is. Below is what got printed out on the serial monitor without a flashlight near it, so it is the value based on just surrounding light.
 
-![serial monitor one photosensor surround](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/one_photoresistor_serial.png)
+
 
 <p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/one_photoresistor_serial.png" height="300" width="500"></p>
 
 
 After callibrating with one photosensor, I created a circuit with two photosensors, one pointing to the left and one to the right of the robot so that it will turn to the right or left based on where the flashlight is. I used two analog pins, A0 and A1 for the output of the photoresistors. The full circuit below. 
-
-![full circuit](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/full_circuit.jpg)
 
 
 <p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/full_circuit.png" height="300" width="500"></p>
@@ -41,14 +39,13 @@ To detect which side the flashlight is, I used a Normalized Measurement for the 
 
 Serial Output when flashlight is on the right:
 
-![right flashlight](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_right.png)
 
 <p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_right.png" height="300" width="500"></p>
 
 
 Serial Output when flashlight is on the left:
 
-![right flashlight](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_left.png)
+
 
 <p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_left.png" height="300" width="500"></p>
 
