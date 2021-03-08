@@ -21,13 +21,21 @@ After understanding how to program the Arduino, we got started on the first part
  
 ![one photosensor circuit](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/single_photoresistor_circuit.png)
 
+<p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/single_photoresistor_circuit.png" height="300" width="500"></p>
+
 After creating this circuit, I used the `CdS_ReadA0.ino` code to read the value to the Serial Monitor. In the code, first in set up I set the baud rate to 9600 and then match that on the serial monitor so that I can read the outputs. Then in the loop, I read the pinvalue using an `analogRead` to pin A0, which is which pin the photoresistor output is. Below is what got printed out on the serial monitor without a flashlight near it, so it is the value based on just surrounding light.
 
 ![serial monitor one photosensor surround](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/one_photoresistor_serial.png)
 
+<p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/one_photoresistor_serial.png" height="300" width="500"></p>
+
+
 After callibrating with one photosensor, I created a circuit with two photosensors, one pointing to the left and one to the right of the robot so that it will turn to the right or left based on where the flashlight is. I used two analog pins, A0 and A1 for the output of the photoresistors. The full circuit below. 
 
 ![full circuit](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/full_circuit.jpg)
+
+
+<p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/full_circuit.png" height="300" width="500"></p>
 
 To detect which side the flashlight is, I used a Normalized Measurement for the left and the right. This is needed because if the flashlight was on the right, for example, the left would still detect it. The normalized measurement for the left is the sensor reading on the left divided by the sum of both sensor readings and the normalized measurement for the right is the sensor reading on the right divided by the sum of both sensors. I wrote the code `CdS_ReadA0A1.ino` so that it prints the normalized measurement values on both the left and right side. This is the first step to eventually making the robot follow light.
 
@@ -35,10 +43,14 @@ Serial Output when flashlight is on the right:
 
 ![right flashlight](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_right.png)
 
+<p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_right.png" height="300" width="500"></p>
+
 
 Serial Output when flashlight is on the left:
 
 ![right flashlight](https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_left.png)
+
+<p align="center"><img src="https://github.com/agarwal-aditi/ece3400/blob/gh-pages/photoresistor_left.png" height="300" width="500"></p>
 
 In Lab 2, I will connect the motors to the circuit and write code so that the robot moves based on the light.
  
