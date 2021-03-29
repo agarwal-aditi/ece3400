@@ -120,6 +120,19 @@ Slow in a straight line video: https://drive.google.com/file/d/1GYDUXnUgZSVViRsh
   <iframe src="https://drive.google.com/file/d/1GYDUXnUgZSVViRshvOcERzb2nhsQlAwe/preview" width="640" height="480"></iframe>
 </figure>
 
+### Light Following using Photosensors
+
+After calibrating the motors and understanding how to move the wheels, I combined the code from lab 1 normalized measurements identifying if the light is right or left with the code for moving the wheels. To turn the robot, I set the wheel in the direction the robot is turning to a slow speed, and the opposite wheel a fast speed. 
+
+For light following, the conditions are that if there is no extra light source (flashlight), the robot spins in circles and the LED blinks repeatedly with 500 ms on and then off, if there is a light on one side then the robot turns that direction, and if the flashlight is not on one side the robot goes in a straight line. 
+
+To make the code more organized, I made multiple functions. One function to move forward, one to move left, one to move right, and one for the blinking LED. This helped me debug the code a lot easier. In the main loop, I check if the left normalized value is between 0.4 and 0.6 and if it is, then it checks if there is extra light by checking if the actual photosensor value is greater than 100. If it is greater than 100 it goes straight and if not then it spins in circles with the blinking LED. If the left normalized value is not between 0.4 and 0.6 then it sees with normalized value is higher and turns in that direction. 
+
+Final Video: https://drive.google.com/file/d/1JJEkW6YtUpRud0T0AVR1O1OzvPztSUCq/view?usp=sharing
+
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1JJEkW6YtUpRud0T0AVR1O1OzvPztSUCq/preview" width="640" height="480"></iframe>
+</figure>
 
 
 
