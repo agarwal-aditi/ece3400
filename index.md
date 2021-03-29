@@ -4,7 +4,7 @@ This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21.
 
 ## Table of Contents
 - [Lab 1](#Lab 1)
-- - [Lab 2](#Lab 2)
+- [Lab 2](#Lab 2)
 
 ## Lab 1
 
@@ -57,15 +57,19 @@ In order to read voltage values, the Arduino is able to convert an Analog input 
 
 In this lab, we had to examine the timing of the ADC process as we use it to read the photoresistor values for light following. The CLK_ADC value generates a clock signal as described by the following table from the ATMega4809 Datasheet. 
 
-insert datasheet screenshot
+<img width="818" alt="Screen Shot 2021-03-29 at 5 09 50 PM" src="https://user-images.githubusercontent.com/45053255/112900484-93e80680-90b1-11eb-86ad-5e7c60726b41.png">
+
 
 Using the bitRead() function and from reading the ATMega Datasheet for the correct bits to access, I was able to access the prescalar and PDIV values from the ADC0 CTRLC and CLKCTRL MCLKCTRLB registers respectively. The CLK_ADC values is generated from the CLK_PER value which is the CPU clock divided down by the prescaler value that is accessed in the CTRLC register in ADC0. 
 
-insert prescalar screenshot
+![Uploading Screen Shot 2021-03-29 at 5.10.31 PM.png…]()
+<img width="925" alt="Screen Shot 2021-03-29 at 5 10 19 PM" src="https://user-images.githubusercontent.com/45053255/112900543-a5c9a980-90b1-11eb-9078-3747716fa2a3.png">
+
 
 The prescalar value of 6 means that the prescalar is 128. There is also the PDIV value which is either enabled or un-enabled for use to futher divide the CLK_PER value by. 
 
-insert pdiv screensht
+<img width="927" alt="Screen Shot 2021-03-29 at 5 10 42 PM" src="https://user-images.githubusercontent.com/45053255/112900586-b2e69880-90b1-11eb-8a7b-ee9b9755a173.png">
+
 
 Since the PDIV was not enabled (PEN = 0), it was not factored into the CLK_ADC value.
 
@@ -80,11 +84,19 @@ To run the robot's motors, we used an H-Bridge. We were given a chip for the H-B
 
 The internal logic for the L293D chip to work requires 5V from the Arduino and the motors use the 4.5V AA Battery pack. I connected Arduino output pins to the enables for the 2 motors to control the speed and then digital connections to the motor. 
 
-insert pic of robot circuit
+<img width="618" alt="Screen Shot 2021-03-29 at 5 11 14 PM" src="https://user-images.githubusercontent.com/45053255/112900649-c5f96880-90b1-11eb-881e-1e840a76af20.png">
+
+The chip at the bottom of the image (back of the robot) is the L293D chip.
 
 To send a digital signal that can control power, the Arduino uses Pulse Width Modulation (PWM). PWM works by sending either a high or low signal, but in different time intervals. The longer the high signal is in each cycle, the higher the voltage is. 
 
 <img width="414" alt="Screen Shot 2021-03-29 at 5 07 00 PM" src="https://user-images.githubusercontent.com/45053255/112900226-2dfb7f00-90b1-11eb-8916-f4a08e43d875.png">
+
+I used 2 Arduino digital pins with PWM for the enables for each motor to control the speed. The other outputs for the direction did not need to be connected to PWM pins because they were either just high or low. To show wheel actuation, I first just made the robot's wheels move forward together, move backward together, turn in opposite direction to each other, and then come to a full stop. Each of these are for one second until the stop. To get the timing accurate, I used a millisecond timer and compared the time in the loop to 0 to switch to the different wheel directions based on time. 
+
+
+https://user-images.githubusercontent.com/45053255/112901371-ad3d8280-90b2-11eb-96fa-8a2b6565c5f5.mov
+
 
 
 
