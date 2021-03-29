@@ -4,6 +4,7 @@ This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21.
 
 ## Table of Contents
 - [Lab 1](#Lab 1)
+- - [Lab 2](#Lab 2)
 
 ## Lab 1
 
@@ -45,6 +46,45 @@ Serial Output when flashlight is on the left:
 
 In Lab 2, I will connect the motors to the circuit and write code so that the robot moves based on the light.
  
+
+## Lab 2
+
+In this lab, I integrated the work from Lab 1 where I callibrated and created the circuits for the photoresistors with the actual motors and wheels to fully create a light following robot. 
+
+### Analog-to-Digital Conversion on Arduino
+
+In order to read voltage values, the Arduino is able to convert an Analog input into a digital reading from 0 to 1023. 
+
+In this lab, we had to examine the timing of the ADC process as we use it to read the photoresistor values for light following. The CLK_ADC value generates a clock signal as described by the following table from the ATMega4809 Datasheet. 
+
+insert datasheet screenshot
+
+Using the bitRead() function and from reading the ATMega Datasheet for the correct bits to access, I was able to access the prescalar and PDIV values from the ADC0 CTRLC and CLKCTRL MCLKCTRLB registers respectively. The CLK_ADC values is generated from the CLK_PER value which is the CPU clock divided down by the prescaler value that is accessed in the CTRLC register in ADC0. 
+
+insert prescalar screenshot
+
+The prescalar value of 6 means that the prescalar is 128. There is also the PDIV value which is either enabled or un-enabled for use to futher divide the CLK_PER value by. 
+
+insert pdiv screensht
+
+Since the PDIV was not enabled (PEN = 0), it was not factored into the CLK_ADC value.
+
+The CLK_ADC is hence 16 MHz / 128 = 125 kHz
+
+### H-Bridge
+
+To run the robot's motors, we used an H-Bridge. We were given a chip for the H-Bridge (L293D). To power and control the motors, we used the following pinout from Lecture 7.
+
+
+<img width="694" alt="Screen Shot 2021-03-29 at 4 47 34 PM" src="https://user-images.githubusercontent.com/45053255/112898132-782f3100-90ae-11eb-8d56-598d2129cb8e.png">
+
+The internal logic for the L293D chip to work requires 5V from the Arduino and the motors use the 4.5V AA Battery pack. I connected Arduino output pins to the enables for the 2 motors to control the speed and then digital connections to the motor. 
+
+insert pic of robot circuit
+
+To send a digital signal that can control power, the Arduino uses Pulse Width Modulation (PWM). PWM works by sending either a high or low signal, but in different time intervals. The longer the high signal is in each cycle, the higher the voltage is. 
+
+<img width="414" alt="Screen Shot 2021-03-29 at 5 07 00 PM" src="https://user-images.githubusercontent.com/45053255/112900226-2dfb7f00-90b1-11eb-8916-f4a08e43d875.png">
 
 
 
