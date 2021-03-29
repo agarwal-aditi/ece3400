@@ -51,6 +51,10 @@ In Lab 2, I will connect the motors to the circuit and write code so that the ro
 
 In this lab, I integrated the work from Lab 1 where I callibrated and created the circuits for the photoresistors with the actual motors and wheels to fully create a light following robot. 
 
+### Materials
+<img width="611" alt="Screen Shot 2021-03-29 at 5 34 50 PM" src="https://user-images.githubusercontent.com/45053255/112903091-11614600-90b5-11eb-9e58-9acc08dc3e81.png">
+
+
 ### Analog-to-Digital Conversion on Arduino
 
 In order to read voltage values, the Arduino is able to convert an Analog input into a digital reading from 0 to 1023. 
@@ -94,12 +98,30 @@ To send a digital signal that can control power, the Arduino uses Pulse Width Mo
 
 I used 2 Arduino digital pins with PWM for the enables for each motor to control the speed. The other outputs for the direction did not need to be connected to PWM pins because they were either just high or low. To show wheel actuation, I first just made the robot's wheels move forward together, move backward together, turn in opposite direction to each other, and then come to a full stop. Each of these are for one second until the stop. To get the timing accurate, I used a millisecond timer and compared the time in the loop to 0 to switch to the different wheel directions based on time. 
 
-
-https://user-images.githubusercontent.com/45053255/112901371-ad3d8280-90b2-11eb-96fa-8a2b6565c5f5.mov
+video link: https://drive.google.com/file/d/1U6MJ6ScXGQpIi-ZrKf22N5cd0a4_htNr/view?usp=sharing
 
 <figure class="video_container">
   <iframe src="https://drive.google.com/file/d/1U6MJ6ScXGQpIi-ZrKf22N5cd0a4_htNr/preview" width="640" height="480"></iframe>
 </figure>
+
+### Calibrating the Motors
+
+The wheels are impossible to attach identically, hence to move the robot in a straight line, I had to find the different PWM speed values to write to the motors to go straight. I found that my left wheel moved faster than my right wheel so I adjusted for both fast and slow speeds.
+
+Fast in straight line video: https://drive.google.com/file/d/1BnMHmPCJJ87rW69YuH_DytN6lfREscw7/view?usp=sharing
+
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1BnMHmPCJJ87rW69YuH_DytN6lfREscw7/preview" width="640" height="480"></iframe>
+</figure>
+
+Slow in a straight line video: https://drive.google.com/file/d/1GYDUXnUgZSVViRshvOcERzb2nhsQlAwe/view?usp=sharing
+
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1GYDUXnUgZSVViRshvOcERzb2nhsQlAwe/preview" width="640" height="480"></iframe>
+</figure>
+
+
+
 
 
 
