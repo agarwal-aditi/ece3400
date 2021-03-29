@@ -97,6 +97,10 @@ I used 2 Arduino digital pins with PWM for the enables for each motor to control
 
 https://user-images.githubusercontent.com/45053255/112901371-ad3d8280-90b2-11eb-96fa-8a2b6565c5f5.mov
 
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1U6MJ6ScXGQpIi-ZrKf22N5cd0a4_htNr/view?usp=sharing" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
 
 
 
