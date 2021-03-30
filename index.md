@@ -3,8 +3,8 @@
 This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21. 
 
 # Table of Contents
-- [Lab 1](#Lab1)
-- [Lab 2](#Lab2)
+- [Lab 1](#lab1)
+- [Lab 2](#lab2)
 
 ## Lab1
 
