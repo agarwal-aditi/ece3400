@@ -2,8 +2,9 @@
 
 This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21. 
 
-<details>
-<summary>Lab 1</summary>
+# Table of Contents
+- [Lab 1](#Lab 1)
+- [Lab 2](#Lab 2)
 
 ## Lab 1
 
@@ -44,11 +45,7 @@ Serial Output when flashlight is on the left:
 
 
 In Lab 2, I will connect the motors to the circuit and write code so that the robot moves based on the light.
- 
-</details>
 
-<details>
-<summary>Lab 2</summary>
 
 ## Lab 2
 
@@ -138,7 +135,7 @@ Final Video: https://drive.google.com/file/d/1JJEkW6YtUpRud0T0AVR1O1OzvPztSUCq/v
 </figure>
 
 
-</details>
+
 
 
 
