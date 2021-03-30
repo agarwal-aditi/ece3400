@@ -3,10 +3,10 @@
 This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21. 
 
 # Table of Contents
-- [Lab 1](#Lab 1)
-- [Lab 2](#Lab 2)
+- [Lab 1](#Lab1)
+- [Lab 2](#Lab2)
 
-## Lab 1
+## Lab1
 
 In Lab 1, I learned how to program the Arduino, how to assemble a circuit with photoresistors, and how to view the input of photoresistors through using Arduino pins. 
 
@@ -47,7 +47,7 @@ Serial Output when flashlight is on the left:
 In Lab 2, I will connect the motors to the circuit and write code so that the robot moves based on the light.
 
 
-## Lab 2
+## Lab2
 
 In this lab, I integrated the work from Lab 1 where I callibrated and created the circuits for the photoresistors with the actual motors and wheels to fully create a light following robot. 
 
