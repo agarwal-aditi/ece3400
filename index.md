@@ -5,6 +5,7 @@ This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21.
 # Table of Contents
 - [Lab 1](#lab1)
 - [Lab 2](#lab2)
+- [Lab 3](#lab3)
 
 ## Lab1
 
@@ -135,8 +136,42 @@ Final Video: https://drive.google.com/file/d/1JJEkW6YtUpRud0T0AVR1O1OzvPztSUCq/v
 </figure>
 
 
+## Lab3
+
+In this lab we learned about Filtering and FFT by wiring circuits for a microphone and doing FFT analysis on MATLAB and then the Arduino. I implemented and tested passive and active filters. For the final circuit, I implemented a bandpass filter with the microphone which will be used in the next lab.
+
+### Materials
+<img width="636" alt="Screen Shot 2021-04-20 at 4 59 01 PM" src="https://user-images.githubusercontent.com/45053255/115463350-b6c19280-a1f9-11eb-804f-711e73fe2602.png">
+
+### Initial Microphone Circuit
+
+<img width="639" alt="Screen Shot 2021-04-20 at 6 11 12 PM" src="https://user-images.githubusercontent.com/45053255/115470109-cf36aa80-a203-11eb-8e62-ed7a1517c44b.png">
 
 
 
+### LT Spice Simulations vs Actual Results
 
+To test if the passive and active filters I implement are correct, I simulated them using LTSpice.
+
+Low Pass Filter Schematic
+<img width="884" alt="Screen Shot 2021-04-20 at 5 01 10 PM" src="https://user-images.githubusercontent.com/45053255/115463608-030cd280-a1fa-11eb-819d-4a78f2a035a7.png">
+
+Simulated Low Pass Cutoff Frequency Zoomed-In
+<img width="886" alt="Screen Shot 2021-04-20 at 5 02 39 PM" src="https://user-images.githubusercontent.com/45053255/115463786-38192500-a1fa-11eb-93fa-8c2e188887a6.png">
+
+High Pass Filter Schematic
+<img width="1123" alt="Screen Shot 2021-04-20 at 5 01 46 PM" src="https://user-images.githubusercontent.com/45053255/115463675-1881fc80-a1fa-11eb-962e-687bd7b69308.png">
+
+Simulated High Pass Cutoff Frequency Zoomed-In
+<img width="885" alt="Screen Shot 2021-04-20 at 5 03 58 PM" src="https://user-images.githubusercontent.com/45053255/115463967-672f9680-a1fa-11eb-8ed1-769f5c862c51.png">
+
+The Low Pass and High Pass filters were not accurate on the actual board. The professor explained that the inaccurate results are likely a result of faulty capacitors.
+
+Bandpass Filter Schematic
+<img width="861" alt="Screen Shot 2021-04-20 at 5 38 55 PM" src="https://user-images.githubusercontent.com/45053255/115467295-4a499200-a1ff-11eb-92ed-32615bd4de9a.png">
+
+Bandpass Filter Simulation 
+<img width="982" alt="Screen Shot 2021-04-20 at 5 46 07 PM" src="https://user-images.githubusercontent.com/45053255/115467936-4bc78a00-a200-11eb-91a7-7d4e037a11d4.png">
+
+The Bandpass Filter real results matched the simulation trend for the most part. The real does not have as sharp of cutoffs outside the bandpass frequency range because of noise that is not simulated. 
 
