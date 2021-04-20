@@ -143,9 +143,17 @@ In this lab we learned about Filtering and FFT by wiring circuits for a micropho
 ### Materials
 <img width="636" alt="Screen Shot 2021-04-20 at 4 59 01 PM" src="https://user-images.githubusercontent.com/45053255/115463350-b6c19280-a1f9-11eb-804f-711e73fe2602.png">
 
-### Initial Microphone Circuit
+### Microphone Circuit without Amplification
 
+The first iteration of the microphone circuit was without any amplification or filtering and was a simple circuit, as shown in the picture below:
 <img width="639" alt="Screen Shot 2021-04-20 at 6 11 12 PM" src="https://user-images.githubusercontent.com/45053255/115470109-cf36aa80-a203-11eb-8e62-ed7a1517c44b.png">
+
+<img width="412" alt="Screen Shot 2021-04-20 at 7 20 17 PM" src="https://user-images.githubusercontent.com/45053255/115475369-71a75b80-a20d-11eb-9ceb-47631f3c872f.png">
+
+After implementing this circuit, I wrote the Arduino code to recieve it. Since the data needed to be read quickly, I could not just simply use the analogRead() function. I had to manually code the ADC in Free Running mode to obtain the values. Then after getting the ADC value, which is from 0 to 1023, I had to convert it to a signed 16 bit integer value so I could graph the spectrum. I converted it by subtracting 512 (the 0 value from 0 to 1023) and then shifting 6 bits to accomodate for the subtraction. 
+
+Frequency vs Amplitude for 500 Hz on MATLAB
+<img width="533" alt="Screen Shot 2021-04-20 at 7 26 21 PM" src="https://user-images.githubusercontent.com/45053255/115475734-4b35f000-a20e-11eb-80a4-ecdce731cd07.png">
 
 
 
@@ -174,4 +182,18 @@ Bandpass Filter Simulation
 <img width="982" alt="Screen Shot 2021-04-20 at 5 46 07 PM" src="https://user-images.githubusercontent.com/45053255/115467936-4bc78a00-a200-11eb-91a7-7d4e037a11d4.png">
 
 The Bandpass Filter real results matched the simulation trend for the most part. The real does not have as sharp of cutoffs outside the bandpass frequency range because of noise that is not simulated. 
+
+### FFT on Arduino
+
+The final part of the lab used the Bandpass filter we implemented and performing Fourier analysis on it. To perform Fourier analysis, I used the FFT on Arduino library, and then stored 257 samples from the microphone in an array using TCA interrrupt to make it only 257. Then, I performed Fourier analysis on those samples.
+
+Spectrum for 500 Hz
+
+<img width="576" alt="Screen Shot 2021-04-19 at 5 26 30 PM" src="https://user-images.githubusercontent.com/45053255/115476078-0ced0080-a20f-11eb-99b5-6314afc3d882.png">
+
+Spectrum for 700 Hz
+<img width="519" alt="Screen Shot 2021-04-20 at 7 33 47 PM" src="https://user-images.githubusercontent.com/45053255/115476183-550c2300-a20f-11eb-8bce-4d79b2af6ac4.png">
+
+Spectrum for 900 Hz
+<img width="500" alt="Screen Shot 2021-04-20 at 7 34 11 PM" src="https://user-images.githubusercontent.com/45053255/115476204-635a3f00-a20f-11eb-9bbc-f96589e74423.png">
 
