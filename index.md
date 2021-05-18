@@ -6,6 +6,7 @@ This is Aditi Agarwal's (aa2224) Wiki Page for ECE 3400 SP 21.
 - [Lab 1](#lab1)
 - [Lab 2](#lab2)
 - [Lab 3](#lab3)
+- [Lab 4](#lab4)
 
 ## Lab1
 
@@ -196,4 +197,77 @@ Spectrum for 700 Hz
 
 Spectrum for 900 Hz
 <img width="500" alt="Screen Shot 2021-04-20 at 7 34 11 PM" src="https://user-images.githubusercontent.com/45053255/115476204-635a3f00-a20f-11eb-9bbc-f96589e74423.png">
+
+## Lab4
+
+In this lab we combined our bandpass filter circuit, ultrasonic sensor, motor actuation, and photosensors to create 2 demos: one that navigated detectnig 2 objects after a specific frequency is played, and one light following and obstacle avoiding demo. This lab acted as a final summary of our work from this semester.
+
+### Materials
+- Ultrasonic Sensor
+- microphone
+- bandpass circuit (from [Lab 3](#lab3))
+- photosensor circuit (from [Lab 1](#lab1) + [Lab 2](#lab2))
+- motors and h-bridge
+
+### Demo 1: Detecting 2 Objects
+
+#### Setting up the Ultrasonic sensor
+
+The ultrasonic (US) sensor is a device which uses the time of sound delay to measure its distance from an object. It works by sending a trigger signal and detectinig the echo back. The echo and trigger signals are controlled by digital pins on the Arduino. I wrote the code so that it sends out a trigger signal for 10 microseconds. It does this by triggering a low digital signal to the trigger pin for 2 microseconds, then high for 10 microseconds, and then low again. After this, the echo signal pulses to listen for the signal back and measure the amount of time. Then, I convert the time it takes to detect the sound to the distance using the equation:
+distance_in_CM = (soundDuration * 0.0343)/2
+
+This equation and the ultrasonics detection were fairly accurate. Before continuing with the rest of the lab, I first characterized the sensor by the actual distance and the US measured distance in CM.
+
+<img width="664" alt="Screen Shot 2021-05-18 at 4 17 54 PM" src="https://user-images.githubusercontent.com/45053255/118717878-9d116c00-b7f4-11eb-965f-9e762eab08b8.png">
+
+The graph indicates that the US becomes more accurate with further away distances. This was really helpful in demo 1 because the accuracy is really high for the distances of both objects (20 - 30 cm and 60 - 70 cm). 
+
+#### Modifying ISR from Lab 3
+
+In the demo, the robot is supposed to start moving only after it detects the 550 Hz frequency sound in a sound clip that was given to us. I first did Fourier analysis on the sound file and plotted the spectrum of the notes to see what frequencies were there.
+
+<img width="837" alt="Screen Shot 2021-05-18 at 4 49 43 PM" src="https://user-images.githubusercontent.com/45053255/118721578-0c895a80-b7f9-11eb-9961-4a0835947e7e.png">
+
+The Arduino code from lab 3 performs FFT and finds the amplitude per bin in which the bin is the frequency divided by 10, as shown below in the 500 Hz plot from lab 3.
+<img width="558" alt="Screen Shot 2021-05-18 at 4 51 31 PM" src="https://user-images.githubusercontent.com/45053255/118721790-4d816f00-b7f9-11eb-90c3-4c032202d800.png">
+
+From the plots, I determined that if a 550 Hz sound is played, the FFT on the Arduino should detect an amplitude of above 70 somwhere in bins 40 - 60. 
+
+I modified the lab 3 code so that the FFT performed continuously and not just for the ADC value buffer size but clearing the buffer and the count of ADC values after collecting 257 values and performing the FFT for those values. In the code, I also wrote an additional loop to check the bin values from 40-60 for amplitudes above 70, and if it detected an amplitude above 70, it would call a trigger function which would stop the free-running ADC mode and TCA interrupts and begin the object detection code.
+
+#### Object Detection
+
+In this demo, the requirements were for the robot to slowly turn and make a full rotation. During the rotation, if the robot detects one of the objects, the LED turns on until it does not detect it. Once it passes the object the LED turns off. After a full rotation it turns off.
+
+<img width="507" alt="Screen Shot 2021-05-18 at 5 01 13 PM" src="https://user-images.githubusercontent.com/45053255/118722840-a7ceff80-b7fa-11eb-839e-1d97b72b53b9.png">
+
+The above diagram shows the approximate layout of the objects in the field. The object detection condition I used was detecting if the distance is between 15 cm and 70 cm as that covered both of the objects. 
+
+Demo 1 Video: https://drive.google.com/file/d/1-dvk8MDvJ8azJjOVkXT8xMKX3Atx7dkC/view?usp=sharing
+
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/1-dvk8MDvJ8azJjOVkXT8xMKX3Atx7dkC/preview" width="640" height="480"></iframe>
+</figure>
+
+### Demo 2: Navigating Robot
+
+<img width="601" alt="Screen Shot 2021-05-18 at 5 06 41 PM" src="https://user-images.githubusercontent.com/45053255/118723432-6b4fd380-b7fb-11eb-9b70-e3929fec8242.png">
+
+In this demo, the requirements were for the robot to follow light and the track above to obstacle 1, for the light to go to the left but the robot not to turn to the left, and then for the robot to follow the light right, then go to obstacle 2 and stop. Then at obstacle 2, turn left to detect obstacle 1 again but not go forward, then turn to detect obstacle 3 and stop. When the robot detects an obstacle 30 cm away, it turns the LED on. When it detects an object 5 cm away, it stops moving forward to avoid collision.
+
+This demo mostly combined the code from the light following robot in [Lab 2](#lab2), and the ultrasonic code from the first demo. 
+
+The logic for the main loop is to first check if there is an object 30 cm away or less. If so, then I turn the LED Pin to high, and if not, then I set the pin low. Then I check if there is an object 5 cm away. If there is, then it first sets the boolean object_detecting to true. If the first object has not been detected yet, I call a function that only follows light if it is on the right side. If the first object has been detected already, then it follows light only left or right. For that function, I modified the following light code from Lab 2 so that it only can only move forward if the object_detecting boolean is false. To set the object_detecting boolean back to false, I have another if-statement in the main loop in which if object detection is further than 10 centimeters away but object_detecting is true, then it sets it to false. It also sets the other boolean for if the first object has been detected yet to true so that the next time it detects an object, it is able to turn either direction.
+
+
+Demo 2 Video: https://drive.google.com/file/d/117mCBtAJq-JSeYl9elW-WpFVaSdWIvo9/view?usp=sharing
+
+<figure class="video_container">
+  <iframe src="https://drive.google.com/file/d/117mCBtAJq-JSeYl9elW-WpFVaSdWIvo9/preview" width="640" height="480"></iframe>
+</figure>
+
+
+
+
+
 
